@@ -1,0 +1,19 @@
+body{
+    color: white;
+    background: #A7E3F9;
+}
+
+#arriba {
+    background: #365DD6;
+}
+.enviar{
+    text-align: center;
+    margin: 20px 0 0 200px;
+    background: #365DD6;
+    border-bottom: #365DD6;
+    border-radius: 20px;
+    color: white;
+}
+.enviar:hover{
+    cursor: pointer;
+}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=decive-width, user-scalable=no,
+            initial-scale=1.0, maximun-scale=1.0, minimun-scale=1.0">
+            <title>Compilador de lenguaje</title>
+            <!-- <link rel="stylesheet" href="Complementos/boopstrapcss/bootstrap.min.css"> -->
+
+            <!-- boopstrap 4 -->
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            <!-- mi estilo -->
+            <link rel="stylesheet" href="../static/css/main.css">
+            
+            <!--Editor de código-->
+            <!-- fundamental para que funcione -->
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/codemirror.min.css" rel="stylesheet" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/codemirror.min.js"></script>
+
+            <!-- tema a elección -->
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/theme/icecoder.min.css" rel="stylesheet" />
+
+            <!-- librería aceptada a elección -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/mode/javascript/javascript.min.js"></script>
+    </head>
+
+    <body>
+        <header>
+            <div id="arriba">
+                <div class="row">
+                    <div class="col-md-4 text-white" >
+                        <h5>JUAN LUIS MANCERA CARO</h5>     
+                        <h5>LUIS CARLOS CLAVIJO HATUN</h5>   
+                        <h5>RICARDO RANGEL RINCON</h5>   
+                        <h5>ADRIAN ORLANDO QUIÑONEZ NIER</h5> 
+                    </div>
+                </div>
+            </div>
+        </header>
+<hr>
+        <section>
+            <div class="container">
+                <div class="row alert-primary">
+                    <div class="col-md-6">
+                        <form method="POST" action="{{url_for('codigo')}}">
+                            <label for="exampleFormControlTextarea1"><h3>Codigo</h3></label>
+                            <textarea class="form-control " id="code" name="code" rows="20">{{codigo}}</textarea>
+                            <input type="submit" value="Enviar" class="enviar">
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <form action="">
+                            <div class="form-group">
+                                <!-- Aqui va el codigo de js -->
+                                <label for="exampleFormControlTextarea1"><h3>Validacion</h3></label>
+                                <textarea class="form-control disabled" id="exampleFormControlTextarea1" rows="20" readonly>{{Resultado}}</textarea>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div><br><br>
+            <div class="container">
+                <div class="row alert-primary">
+                    <div class="col-md-6">
+                        <label for="exampleFormControlTextarea1"><h3>Ejemplo de código</h3></label>
+                        <textarea class="form-control " id="code2" name="code2" rows="20">
+{{"**Esto es un comentario**
+a = 4;
+b=3;
+
+si(a>b){
+  imprimir:a;
+}no{
+  imprimir:b;
+}
+
+para(a=0;a<3;a=a+1;){      
+  imprimir:a;      
+}
+
+mientras(a>1){
+    imprimir:a;
+    a = a - 1;
+}
+
+haz{
+    a = a + 1;
+}mientras(a<5);"}}
+                        </textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="exampleFormControlTextarea1"><h3>Documentación</h3></label>
+                        <div><p>
+                            <h5>Asignaciones a variables:</h5>
+                            Se dice la variable en la que se va a guardar el valor, 
+                            seguido del signo igual y del valor a guardar en la variable,
+                            los nombres de variables inician por una letra o guión bajo. se puede crear una variable de
+                            tipo cadena, numérico o booleano (verdadero/falso), al final se pone punto y coma<br>
+                            <h5>Operaciones:</h5>
+                            Se pueden operar variables, se pueden hacer sumas '+', restas '-', divición '/' y multiplicación '*'. <br>
+                            <h5>Imprimir:</h5>
+                            Para imprimir solo se debe escribir la palabra reservada 'imprime' seguido de dos puntos y el valor a imprimir,
+                             dicho valor puede ser el de una variable un numero, una cadena o un esstado booleano. <br>
+                            <h5>Sentencia si y si no:</h5>
+                            Se escribe la palabra reservada 'si', seguido entre parentesis se escribe una condición,
+                            dicha condición puede ser: mayor que (>), menor que (<), igual a (==), diferente de (!=),
+                            mayor o igual (>=), y tambien menor o igual (<=).<br>
+                            Segido se escribirá dentro de bloques '{}' las sentencias a ejecutar. En  caso de no complirse la
+                            condición, se puede colocar luego de cerrar los bloques la palabra reservada 'no' y seguido escribir en
+                            bloques un código que se ejecutará. <br>
+                            <h5>Sentencia para:</h5>
+                            Primero se escribe la palabra reservada 'para', seguido entres parentesis se debe iniciar una variable, 
+                            escribir una condición, y por último una asignación al valor de la variable para cuando se ejecute el ciclo,
+                            luego dentro de un bloque '{}' se debe escribir las sentencias a ejecutar por el ciclo. <br>
+                            <h5>Sentencia mientras:</h5>
+                            Se escribe la palabra  reservada 'mientras', luego dentro de parentesis se escribe una condición, 
+                            y al final en un bloque se colocan las sentencias a ejecutar. <br>
+                            <h5>Sentencia haz:</h5>
+                            Funciona como el mientras, solo que en este caso se escribe primero la palabra reservada 'haz', seguido se 
+                            escribe un bloque '{}' con instrucciones, y al final del bloque se escribe la palabra mientras seguido de un parentesis 
+                            con la condición y al final punto y coma. Esta a diferencia del mientras ejecutará por lo menos una vez el bloque de 
+                            código. <br><br>
+                            <h5>A tener en cuenta:</h5>
+                            Se puede anidar código, ejemplo, un if dentro de un for, un for dentro de un mientras y así con todas las sentencias.
+                            <h5></h5>
+                        </p></div>
+                    </div>
+                </div>
+            </div>
+        </section><br>
+
+
+        <script>
+            var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+            // muestro las líneas de código
+            lineNumbers: true,
+            // elijo el tema
+            theme: 'icecoder',
+            // esto deshabilita la opción de reescribir
+            readOnly: false,//true,
+            });
+
+            var ejem = CodeMirror.fromTextArea(document.getElementById("code2"), {
+                lineNumbers: true,
+                theme: 'icecoder',
+                readOnly: true,
+            });
+        </script>  
+    </body>
+</html>
+
